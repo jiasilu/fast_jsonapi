@@ -38,6 +38,8 @@ module FastJsonapi
       return serializable_hash unless @resource
 
       serializable_hash[:data] = self.class.record_hash(@resource)
+      serializable_hash[:code] = 200
+      serializable_hash[:msg] = "SUCCESS"
       serializable_hash[:included] = self.class.get_included_records(@resource, @includes, @known_included_objects) if @includes.present?
       serializable_hash
     end
@@ -53,6 +55,8 @@ module FastJsonapi
       end
 
       serializable_hash[:data] = data
+      serializable_hash[:code] = 200
+      serializable_hash[:msg] = "SUCCESS"
       serializable_hash[:included] = included if @includes.present?
       serializable_hash[:meta] = @meta if @meta.present?
       serializable_hash
